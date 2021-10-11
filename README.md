@@ -28,48 +28,55 @@ Things you may want to cover:
 | Column                  | Type       | Options                        |
 | ----------------------- | ---------- | ------------------------------ |
 | nick_name               | string     | null: false                    |
-| email                   | string     | null: false                    |
+| email                   | string     | null: false,unique:true        |
 | encrypted_password      | string     | null: false                    |
-| birthday                | string     | null: false                    |
-| first_name              | text       | null: false                    |
-| last_name               | text       | null: false                    |
-| first_name_kanji        | text       | null: false                    |
-| last_name_kanji         | text       | null: false                    |
+| birthday                | date       | null: false                    |
+| first_name              | string     | null: false                    |
+| last_name               | string     | null: false                    |
+| first_name_kanji        | string     | null: false                    |
+| last_name_kanji         | string     | null: false                    |
 
 ## Association
 has_many :items
-has_many :cards
+has_many :consumers
 
 ## items テーブル
 | Column               | Type       | Options                        |
 | -------------------- | ---------- | ------------------------------ |
-| name                 | string     | null: false                    |
 | user                 | references | null: false, foreign_key: true |
-| category             | text       | null: false                    |
-| status               | text       | null: false                    |
-| shipping_source      | text       | null: false                    |
-| area                 | text       | null: false                    |
-| mailing_date         | text       | null: false                    |
+| name                 | string     | null: false                    |
+| explanation          | text       | null: false                    |
+| category_id          | Integer    | null: false                    |
+| status_id            | Integer    | null: false                    |
+| shipping_source_id   | Integer    | null: false                    |
+| area_id              | Integer    | null: false                    |
+| mailing_date_id      | Integer    | null: false                    |
+| price                | string     | null: false                    |
 
 ## Association
 belongs_to :user
-belongs_to :card
+belongs_to :consumer
 
 ## cards テーブル
 | Column               | Type       | Options                        |
 | -------------------- | ---------- | ------------------------------ |
-| user                 | references | null: false, foreign_key: true |
-| card_number          | string     | null: false                    |
-| expiry               | string     | null: false                    |
-| Security             | string     | null: false                    |
-| postal_code          | string     | null: false                    |
-| prefecture           | text       | null: false                    |
-| city                 | text       | null: false                    |
-| address              | text       | null: false                    |
-| building             | text       |                                |
+| prefecture_id        | Integer    | null: false                    |
+| city                 | string     | null: false                    |
+| address              | string     | null: false                    |
+| building             | string     |                                |
 | phone_number         | string     | null: false                    |
+
+## Association
+belongs_to :consumer
+
+
+## consumers テーブル
+| Column               | Type       | Options                        |
+| -------------------- | ---------- | ------------------------------ |
+| user                 | references | null: false, foreign_key: true |
+| item                 | references | null: false, foreign_key: true |
 
 ## Association
 belongs_to :user
 belongs_to :item
-
+belongs_to :card
