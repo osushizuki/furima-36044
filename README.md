@@ -55,11 +55,12 @@ has_many :consumers
 
 ## Association
 belongs_to :user
-belongs_to :consumer
+has_one :consumer
 
 ## cards テーブル
 | Column               | Type       | Options                        |
 | -------------------- | ---------- | ------------------------------ |
+| postal_code_id       | Integer    | null: false                    |
 | prefecture_id        | Integer    | null: false                    |
 | city                 | string     | null: false                    |
 | address              | string     | null: false                    |
@@ -79,4 +80,4 @@ belongs_to :consumer
 ## Association
 belongs_to :user
 belongs_to :item
-belongs_to :card
+has_one :card
