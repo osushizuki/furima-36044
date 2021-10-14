@@ -51,7 +51,7 @@ has_many :consumers
 | shipping_source_id   | Integer    | null: false                    |
 | area_id              | Integer    | null: false                    |
 | mailing_date_id      | Integer    | null: false                    |
-| price                | string     | null: false                    |
+| price                | integer    | null: false                    |
 
 ## Association
 belongs_to :user
@@ -60,12 +60,13 @@ has_one :consumer
 ## cards テーブル
 | Column               | Type       | Options                        |
 | -------------------- | ---------- | ------------------------------ |
-| postal_code_id       | Integer    | null: false                    |
+| postal_code          | string     | null: false                    |
 | prefecture_id        | Integer    | null: false                    |
 | city                 | string     | null: false                    |
 | address              | string     | null: false                    |
 | building             | string     |                                |
 | phone_number         | string     | null: false                    |
+| consumer             | references | null: false, foreign_key: true |
 
 ## Association
 belongs_to :consumer
