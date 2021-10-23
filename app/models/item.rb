@@ -1,7 +1,11 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :genre
   belongs_to :user
+  belongs_to :area
+  belongs_to :category
+  belongs_to :mailing
+  belongs_to :source
+  belongs_to :status
   has_one_attached :image
 
   validates :name, presence: true
