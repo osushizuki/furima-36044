@@ -7,7 +7,7 @@ window.addEventListener('load', () => {
     addTaxPrice.innerHTML = inputValue/10
 
     const Profit = document.getElementById('profit');
-    Profit.innerHTML = inputValue*11/10
+    Profit.innerHTML = inputValue*9/10
   })
 
 });
