@@ -10,4 +10,6 @@ class User < ApplicationRecord
   validates :last_name, presence: true,format:{with:/\A[ァ-ヶー－]+\z/, message: "は全角（カタカナ）だけ使用してください"}
   validates :first_name_kanji, presence: true, format:{with:/\A[ぁ-んァ-ン一-龥]/, message: "は全角（漢字・ひらがな・カタカナ）だけ使用してください"}
   validates :last_name_kanji, presence: true, format:{with:/\A[ぁ-んァ-ン一-龥]/, message: "は全角（漢字・ひらがな・カタカナ）だけ使用してください"}
+  
+  has_many :items
 end
