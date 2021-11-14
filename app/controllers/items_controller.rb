@@ -5,6 +5,7 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.order("created_at DESC")
+    @consumer = Consumer.all
   end
 
   def new
@@ -22,6 +23,11 @@ class ItemsController < ApplicationController
 
   def show
     @item
+    if @item.consumer != nil
+      @consumer = @item.consumer
+    else
+      @consumer = Consumer.new
+    end
   end
 
   def edit
