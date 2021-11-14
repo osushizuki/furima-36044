@@ -14,7 +14,13 @@
         </h2>
         <div class='buy-item-price'>
           <p class='item-price-text'>¥<%= @item.price %></p>
-          <p class='item-price-sub-text'><%#= @item.source.name %></p>
+          <p class='item-price-sub-text'>
+            <% if @item.shipping_source_id == 2 %>
+              着払い（購入者負担）
+            <% elsif @item.shipping_source_id == 3 %>
+              送料込み（出品者負担）
+            <% end %>
+          </p>
         </div>
       </div>
     </div>
@@ -32,6 +38,7 @@
     <%# /支払額の表示 %>
 
     <%= form_with model: @order_consumer, url: item_orders_path, id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
+    <%= render 'shared/error_messages', model:f.object %>
       <%# カード情報の入力 %>
       <div class='credit-card-form'>
         <h1 class='info-input-haedline'>

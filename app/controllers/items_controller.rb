@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :item_set, except: [:index,:new,:create]
   before_action :authenticate_user!, except: [:index,:show]
   before_action :no_current_user, only: [:edit,:update,:destroy]
+  before_action :sold_out, only: [:edit,:update,:destroy]
 
   def index
     @items = Item.order("created_at DESC")
@@ -63,5 +64,16 @@ class ItemsController < ApplicationController
       redirect_to action: :index 
     end
   end
+
+  def sold_out
+    @consumer = Consumer.all
+    @consumer.each do |consumer|
+      if consumer.item_id == @item.id
+        redirect_to action: :index 
+        break
+      end
+    end
+  end
+
 end
 
