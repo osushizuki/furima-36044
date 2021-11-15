@@ -2,14 +2,16 @@ class OrderConsumer
   include ActiveModel::Model
   attr_accessor :postal_code, :prefecture_id, :city, :address, :building, :phone_number, :item_id, :user_id, :token
 
-  validates :postal_code, presence: true, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
+  with_options presence: true do
+    validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
+    validates :city
+    validates :address
+    validates :phone_number, numericality: {only_integer: true}
+    validates :user_id
+    validates :item_id
+    validates :token
+  end
   validates :prefecture_id, numericality: {other_than: 1, message: "can't be blank"}
-  validates :city, presence: true
-  validates :address, presence: true
-  validates :phone_number, presence: true, numericality: {only_integer: true}
-  validates :user_id, presence: true
-  validates :item_id, presence: true
-  validates :token, presence: true
 
   def save
     consumer = Consumer.create(user_id: user_id, item_id: item_id)

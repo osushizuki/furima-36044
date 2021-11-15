@@ -7,7 +7,7 @@ RSpec.describe OrderConsumer, type: :model do
       user = FactoryBot.create(:user)
       item = FactoryBot.create(:item)
       @order_consumer = FactoryBot.build(:order_consumer, user_id: user.id, item_id: item.id)
-      sleep 0.1
+      sleep 0.3
     end
 
     context '内容に問題ない場合' do
