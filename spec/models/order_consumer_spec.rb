@@ -70,6 +70,12 @@ RSpec.describe OrderConsumer, type: :model do
         expect(@order_consumer.errors.full_messages).to include("Phone number is not a number")
       end
 
+      it "phone_numberが12桁以上だと保存できないこと" do
+        @order_consumer.phone_number = '080123456789'
+        @order_consumer.valid?
+        expect(@order_consumer.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
+      end
+
       it "tokenが空では登録できないこと" do
         @order_consumer.token = nil
         @order_consumer.valid?

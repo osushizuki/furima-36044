@@ -23,7 +23,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item
     if @item.consumer != nil
       @consumer = @item.consumer
     else
@@ -32,7 +31,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @item
+
   end
 
   def update

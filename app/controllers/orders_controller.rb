@@ -6,7 +6,6 @@ class OrdersController < ApplicationController
 
   def index
     @order_consumer = OrderConsumer.new
-    @item
   end
 
   def create
