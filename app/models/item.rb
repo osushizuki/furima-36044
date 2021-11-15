@@ -7,6 +7,7 @@ class Item < ApplicationRecord
   belongs_to :source
   belongs_to :status
   has_one_attached :image
+  has_one :consumer
 
 
   validates :name, presence: true
