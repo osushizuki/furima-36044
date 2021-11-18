@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :item_set
   before_action :item_user
-
+  before_action :seller
 
   def index
     @order_consumer = OrderConsumer.new
@@ -47,6 +47,12 @@ class OrdersController < ApplicationController
         redirect_to root_path 
         break
       end
+    end
+  end
+
+  def seller
+    if @item.user == current_user
+      redirect_to root_path
     end
   end
 
